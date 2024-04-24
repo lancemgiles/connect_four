@@ -4,15 +4,19 @@
 class ConnectFour
   attr_accessor :board
 
+  def initialize
+    @board = build
+  end
+
   def build
-    @board = Array.new(4) { Array.new(4) { '_' } }
+    Array.new(4) { Array.new(4) { '_' } }
   end
 
   def show_board
     @board.each do |row|
       puts row
     end
-    puts " 0 1 2 3"
+    puts ' 0 1 2 3'
   end
 end
 

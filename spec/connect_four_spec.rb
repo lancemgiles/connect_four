@@ -6,7 +6,7 @@ describe ConnectFour do
   describe '#build' do
     it 'builds a 4x4 grid and returns the array' do
       board = ConnectFour.new
-      expect(board.build).to eql([%w[_ _ _ _], %w[_ _ _ _], %w[_ _ _ _], %w[_ _ _ _]])
+      expect(board.board).to eql([%w[_ _ _ _], %w[_ _ _ _], %w[_ _ _ _], %w[_ _ _ _]])
     end
   end
   describe '#show_board' do
