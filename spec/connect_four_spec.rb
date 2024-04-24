@@ -9,6 +9,18 @@ describe ConnectFour do
       expect(board.build).to eql([%w[_ _ _ _], %w[_ _ _ _], %w[_ _ _ _], %w[_ _ _ _]])
     end
   end
+  describe '#show_board' do
+    it 'returns the board values as a grid with the column numbers at the bottom' do
+      board = ConnectFour.new
+      expect(board.show_board).to eql("
+        |_|_|_|_|
+        |_|_|_|_|
+        |_|_|_|_|
+        |_|_|_|_|
+         0 1 2 3
+      ")
+    end
+  end
 end
 
 # describe Player do
