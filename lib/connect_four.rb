@@ -57,6 +57,3 @@ class Player < ConnectFour
   end
 end
 
-player = Player.new
-player.drop_piece('x')
-player.show_board

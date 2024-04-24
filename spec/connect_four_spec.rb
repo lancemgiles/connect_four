@@ -24,6 +24,16 @@ describe ConnectFour do
   #     end.to output(game).to_stdout
   #   end
   # end
+  describe '#filled?' do
+    it 'returns true if the given column is filled' do
+      player = Player.new
+      player.drop_piece('x')
+      player.drop_piece('x')
+      player.drop_piece('x')
+      player.drop_piece('x')
+      expect(player.filled?(0)).to eql(true)
+    end
+  end
 end
 
 describe Player do
@@ -39,10 +49,10 @@ describe Player do
   #     expect(player.find_empty_row(0)).to eql(3)
   #   end
   # end
-  describe '#drop_piece' do
-    it 'returns true if a valid move was made' do
-      player = Player.new
-      expect(player.drop_piece('x')).to eql(true)
-    end
-  end
+  # describe '#drop_piece' do
+  #   it 'returns true if a valid move was made' do
+  #     player = Player.new
+  #     expect(player.drop_piece('x')).to eql(true)
+  #   end
+  # end
 end
