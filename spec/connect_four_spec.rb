@@ -26,11 +26,11 @@ describe ConnectFour do
   end
 end
 
-# describe Player do
-#   describe '#make_move' do
-#     it 'returns coordinates inputted by a player' do
-#       player = Player.new
-#       expect(player.make_move).to eql([0, 0])
-#     end
-#   end
-# end
+describe Player do
+  describe '#choose_row' do
+    it 'returns column selected by player' do
+      player = Player.new
+      expect(player.make_move).to eql(0)
+    end
+  end
+end
