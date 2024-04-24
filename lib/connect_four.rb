@@ -23,11 +23,11 @@ class ConnectFour
     puts ' 0 1 2 3'
   end
 end
-
+ 
 # general player class for human or computer players
 class Player < ConnectFour
   attr_accessor :history
-  
+
   def choose_row
     puts 'Select a column to make your move. (0~3)'
     ans = gets.chomp.to_i
@@ -37,7 +37,15 @@ class Player < ConnectFour
       puts 'It cannot already be occupied.'
       ans = gets.chomp.to_i
     end
-    ans
+    find_empty_row(ans)
+  end
+
+  def find_empty_row(col)
+    @board.reverse_each do |row|
+      return row if row[col] == '_'
+    end
+    nil
   end
 end
-#ConnectFour.new.show_board
+
+p Player.new.choose_row
