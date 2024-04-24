@@ -22,6 +22,10 @@ class ConnectFour
     end
     puts ' 0 1 2 3'
   end
+
+  def filled?(col)
+    @board[0..3][col].any? { |c| c == '_' }
+  end
 end
 
 # general player class for human or computer players
@@ -56,4 +60,3 @@ class Player < ConnectFour
     true
   end
 end
-
