@@ -13,8 +13,8 @@ class ConnectFour
   end
 
   def show_board
-    @board.each do |row|
-      puts row
+    dis = @board.each do |row|
+      puts "|#{row.join('|')}|"
     end
     puts ' 0 1 2 3'
   end
@@ -36,3 +36,4 @@ end
 #     ans
 #   end
 # end
+#ConnectFour.new.show_board

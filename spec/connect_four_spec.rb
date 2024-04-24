@@ -10,15 +10,18 @@ describe ConnectFour do
     end
   end
   describe '#show_board' do
-    it 'returns the board values as a grid with the column numbers at the bottom' do
+    it 'prints the board values as a grid with the column numbers at the bottom' do
       board = ConnectFour.new
-      expect(board.show_board).to eql("
-        |_|_|_|_|
-        |_|_|_|_|
-        |_|_|_|_|
-        |_|_|_|_|
-         0 1 2 3
-      ")
+      game = <<~TEXT
+      |_|_|_|_|
+      |_|_|_|_|
+      |_|_|_|_|
+      |_|_|_|_|
+       0 1 2 3
+      TEXT
+      expect do
+        board.show_board
+      end.to output(game).to_stdout
     end
   end
 end
