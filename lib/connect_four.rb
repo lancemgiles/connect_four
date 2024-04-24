@@ -23,12 +23,12 @@ class ConnectFour
     puts ' 0 1 2 3'
   end
 end
- 
+
 # general player class for human or computer players
 class Player < ConnectFour
   attr_accessor :history
 
-  def choose_row
+  def choose_col
     puts 'Select a column to make your move. (0~3)'
     ans = gets.chomp.to_i
     until ans <= 3 && ans >= 0
@@ -37,15 +37,26 @@ class Player < ConnectFour
       puts 'It cannot already be occupied.'
       ans = gets.chomp.to_i
     end
-    find_empty_row(ans)
+    ans
   end
 
   def find_empty_row(col)
-    @board.reverse_each do |row|
-      return row if row[col] == '_'
+    @board.to_enum.with_index.reverse_each do |row, index|
+      return index if row[col] == '_'
     end
     nil
   end
+
+  def drop_piece(piece)
+    col = choose_col
+    row = find_empty_row(col)
+    return false unless row
+
+    @board[row][col] = piece
+    true
+  end
 end
 
-p Player.new.choose_row
+player = Player.new
+player.drop_piece('x')
+player.show_board

@@ -27,16 +27,22 @@ describe ConnectFour do
 end
 
 describe Player do
-  # describe '#choose_row' do
+  # describe '#choose_col' do
   #   it 'returns column selected by player' do
   #     player = Player.new
-  #     expect(player.choose_row).to eql(0)
+  #     expect(player.choose_col).to eql(0)
   #   end
   # end
-  describe '#find_empty_row' do
-    it 'returns lowest board position of a given column' do
+  # describe '#find_empty_row' do
+  #   it 'returns index of lowest value row of a given column' do
+  #     player = Player.new
+  #     expect(player.find_empty_row(0)).to eql(3)
+  #   end
+  # end
+  describe '#drop_piece' do
+    it 'returns true if a valid move was made' do
       player = Player.new
-      expect(player.find_empty_row(0)).to eql(%w[_ _ _ _])
+      expect(player.drop_piece('x')).to eql(true)
     end
   end
 end
