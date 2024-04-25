@@ -18,6 +18,7 @@ class ConnectFour
     end
     puts ' 0 1 2 3'
   end
+
 end
 
 # general player class for human or computer players
@@ -25,31 +26,37 @@ class Player < ConnectFour
   def choose_col
     puts 'Select a column to make your move. (0~3)'
     ans = gets.chomp.to_i
-    until ans <= 3 && ans >= 0
+    until ans.between?(0, 3)
       puts 'Enter a valid column.'
       puts 'It must be a number between 0 and 3.'
       ans = gets.chomp.to_i
     end
+    row = find_empty_row(ans)
+    while row.nil?
+      puts 'You chose a full column. Try again'
+      ans = gets.chomp.to_i
+      row = find_empty_row(ans)
+    end
     ans
   end
 
-  def drop_piece(column, piece)
-    return false unless column.between?(0, 3)
-
-    @board[column].each_with_index do |cell, index|
-      if cell == '_'
-        @board[column][index] = piece
-        true
-      end
+  def find_empty_row(col)
+    @board.to_enum.with_index.reverse_each do |row, index|
+      return index if row[col] == '_'
     end
-    false
+    nil
+  end
+
+  def drop_piece(column, piece)
+    row = find_empty_row(column)
+    @board[row][column] = piece
   end
 end
 
 game = Player.new
-game.drop_piece('x')
-game.drop_piece('x')
-game.drop_piece('x')
-game.drop_piece('x')
-game.drop_piece('x')
+game.drop_piece(game.choose_col, 'x')
+game.drop_piece(game.choose_col, 'x')
+game.drop_piece(game.choose_col, 'x')
+game.drop_piece(game.choose_col, 'x')
+game.drop_piece(game.choose_col, 'x')
 game.show_board
