@@ -24,6 +24,12 @@ class ConnectFour
       return true if row.all? { |c| c == piece }
     end
   end
+
+  def check_v(piece)
+    @board.transpose.each do |col|
+      return true if col.all? { |c| c == piece }
+    end
+  end
 end
 
 # general player class for human or computer players

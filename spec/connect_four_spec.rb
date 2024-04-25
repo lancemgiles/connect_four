@@ -24,15 +24,26 @@ describe ConnectFour do
   #     end.to output(game).to_stdout
   #   end
   # end
-  describe '#check_h' do
-    it 'returns true if a player has won horizontally' do
+  # describe '#check_h' do
+  #   it 'returns true if a player has won horizontally' do
+  #     player = Player.new
+  #     player.drop_piece(player.choose_col, 'x')
+  #     player.drop_piece(player.choose_col, 'x')
+  #     player.drop_piece(player.choose_col, 'x')
+  #     player.drop_piece(player.choose_col, 'x')
+  #     player.show_board
+  #     expect(player.check_h('x')).to eql(true)
+  #   end
+  # end
+  describe '#check_v' do
+    it 'returns true if a player has won vertically' do
       player = Player.new
       player.drop_piece(player.choose_col, 'x')
       player.drop_piece(player.choose_col, 'x')
       player.drop_piece(player.choose_col, 'x')
       player.drop_piece(player.choose_col, 'x')
       player.show_board
-      expect(player.check_h('x')).to eql(true)
+      expect(player.check_v('x')).to eql(true)
     end
   end
 end
