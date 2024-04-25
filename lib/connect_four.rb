@@ -32,6 +32,34 @@ class ConnectFour
     end
     false
   end
+
+  # bottom right to top left
+  def check_diag_r(piece)
+    if @board[0][0] == piece &&
+       @board[1][1] == piece &&
+       @board[2][2] == piece &&
+       @board[3][3] == piece
+      true
+    else
+      false
+    end
+  end
+
+  # bottom left to top right
+  def check_diag_l(piece)
+    if @board[0][3] == piece &&
+       @board[1][2] == piece &&
+       @board[2][1] == piece &&
+       @board[3][0] == piece
+      true
+    else
+      false
+    end
+  end
+
+  def check_diag(piece)
+    check_diag_l(piece) || check_diag_r(piece)
+  end
 end
 
 # general player class for human or computer players
@@ -64,3 +92,11 @@ class Player < ConnectFour
     @board[row][column] = piece
   end
 end
+
+# player = Player.new
+
+# 10.times do
+#   player.drop_piece(player.choose_col, 'x')
+#   player.show_board
+# end
+# player.check_diag_r('x')

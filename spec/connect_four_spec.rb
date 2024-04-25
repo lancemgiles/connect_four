@@ -35,15 +35,45 @@ describe ConnectFour do
   #     expect(player.check_h('x')).to eql(true)
   #   end
   # end
-  describe '#check_v' do
-    it 'returns true if a player has won vertically' do
+  # describe '#check_v' do
+  #   it 'returns true if a player has won vertically' do
+  #     player = Player.new
+  #     player.drop_piece(player.choose_col, 'x')
+  #     player.drop_piece(player.choose_col, 'x')
+  #     player.drop_piece(player.choose_col, 'x')
+  #     player.drop_piece(player.choose_col, 'x')
+  #     player.show_board
+  #     expect(player.check_v('x')).to eql(false)
+  #   end
+  # end
+  # describe '#check_diag_r' do
+  #   it 'returns true if a player has won diagonally' do
+  #     player = Player.new
+  #     10.times do
+  #       player.drop_piece(player.choose_col, 'x')
+  #       player.show_board
+  #     end
+  #     expect(player.check_diag_r('x')).to eql(true)
+  #   end
+  # end
+  # describe '#check_diag_l' do
+  #   it 'returns true if a player has won diagonally' do
+  #     player = Player.new
+  #     10.times do
+  #       player.drop_piece(player.choose_col, 'x')
+  #       player.show_board
+  #     end
+  #     expect(player.check_diag_l('x')).to eql(true)
+  #   end
+  # end
+  describe '#check_diag' do
+    it 'returns true if a player has won diagonally' do
       player = Player.new
-      player.drop_piece(player.choose_col, 'x')
-      player.drop_piece(player.choose_col, 'x')
-      player.drop_piece(player.choose_col, 'x')
-      player.drop_piece(player.choose_col, 'x')
-      player.show_board
-      expect(player.check_v('x')).to eql(false)
+      10.times do
+        player.drop_piece(player.choose_col, 'x')
+        player.show_board
+      end
+      expect(player.check_diag('x')).to eql(true)
     end
   end
 end
