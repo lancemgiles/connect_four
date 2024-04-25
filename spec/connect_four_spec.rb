@@ -31,7 +31,8 @@ describe ConnectFour do
       player.drop_piece(player.choose_col, 'x')
       player.drop_piece(player.choose_col, 'x')
       player.drop_piece(player.choose_col, 'x')
-      expect(player.check_h).to eql(true)
+      player.show_board
+      expect(player.check_h('x')).to eql(true)
     end
   end
 end

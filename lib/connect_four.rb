@@ -18,6 +18,12 @@ class ConnectFour
     end
     puts ' 0 1 2 3'
   end
+
+  def check_h(piece)
+    @board.each do |row|
+      return true if row.all? { |c| c == piece }
+    end
+  end
 end
 
 # general player class for human or computer players
@@ -50,11 +56,3 @@ class Player < ConnectFour
     @board[row][column] = piece
   end
 end
-
-game = Player.new
-game.drop_piece(game.choose_col, 'x')
-game.drop_piece(game.choose_col, 'x')
-game.drop_piece(game.choose_col, 'x')
-game.drop_piece(game.choose_col, 'x')
-game.drop_piece(game.choose_col, 'x')
-game.show_board
