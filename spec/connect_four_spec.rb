@@ -24,16 +24,16 @@ describe ConnectFour do
   #     end.to output(game).to_stdout
   #   end
   # end
-  # describe '#filled?' do
-  #   it 'returns true if the given column is filled' do
-  #     player = Player.new
-  #     player.drop_piece('x')
-  #     player.drop_piece('x')
-  #     player.drop_piece('x')
-  #     player.drop_piece('x')
-  #     expect(player.filled?(0)).to eql(true)
-  #   end
-  # end
+  describe '#check_h' do
+    it 'returns true if a player has won horizontally' do
+      player = Player.new
+      player.drop_piece(player.choose_col, 'x')
+      player.drop_piece(player.choose_col, 'x')
+      player.drop_piece(player.choose_col, 'x')
+      player.drop_piece(player.choose_col, 'x')
+      expect(player.check_h).to eql(true)
+    end
+  end
 end
 
 describe Player do

@@ -18,7 +18,6 @@ class ConnectFour
     end
     puts ' 0 1 2 3'
   end
-
 end
 
 # general player class for human or computer players
@@ -27,8 +26,7 @@ class Player < ConnectFour
     puts 'Select a column to make your move. (0~3)'
     ans = gets.chomp.to_i
     until ans.between?(0, 3)
-      puts 'Enter a valid column.'
-      puts 'It must be a number between 0 and 3.'
+      puts 'Enter a valid column. It must be a number between 0 and 3.'
       ans = gets.chomp.to_i
     end
     row = find_empty_row(ans)
