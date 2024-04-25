@@ -2,7 +2,7 @@
 
 # Connect Four game
 class ConnectFour
-  attr_accessor :board
+  attr_accessor :board, :current_player, :players
 
   def initialize
     puts "Let's play Connect Four!"
@@ -10,6 +10,49 @@ class ConnectFour
     puts 'You can only choose a column! Your piece will go to the lowest position.'
     @board = Array.new(4) { Array.new(4) { '_' } }
     show_board
+    player1 = Player.new("\u262d", 'player1')
+    player2 = Player.new("\u26c7", 'player2')
+    @players = [player1, player2]
+    @current_player = players[0]
+    puts "#{player1.name} goes first."
+  end
+
+  def play
+    until gameover?
+      drop_piece(choose_col, current_player.piece)
+      show_board
+      win?
+      if full?
+        puts 'The board is full! Tie game.'
+        break
+      end
+      switch_turns
+    end
+  end
+
+  def win?
+    if check_winner(current_player.piece)
+      puts "#{current_player} wins!"
+      abort
+    else
+      false
+    end
+  end
+
+  def full?
+    @board.flatten.none? { |c| c == '_' }
+  end
+
+  def switch_turns
+    @current_player = current_player == players[0] ? players[1] : players[0]
+    puts "#{@current_player}'s turn"
+  end
+
+  def gameover?
+    if win? || full?
+      puts 'Gameover!'
+      abort
+    end
   end
 
   def show_board
@@ -60,10 +103,11 @@ class ConnectFour
   def check_diag(piece)
     check_diag_l(piece) || check_diag_r(piece)
   end
-end
 
-# general player class for human or computer players
-class Player < ConnectFour
+  def check_winner(piece)
+    check_diag(piece) || check_h(piece) || check_v(piece)
+  end
+
   def choose_col
     puts 'Select a column to make your move. (0~3)'
     ans = gets.chomp.to_i
@@ -93,10 +137,19 @@ class Player < ConnectFour
   end
 end
 
-# player = Player.new
+# general player class for human or computer players
+class Player
+  attr_accessor :piece, :name
 
-# 10.times do
-#   player.drop_piece(player.choose_col, 'x')
-#   player.show_board
-# end
-# player.check_diag_r('x')
+  def initialize(piece, name)
+    @piece = piece
+    @name = name
+  end
+
+  def to_s
+    @name.to_s
+  end
+end
+
+game = ConnectFour.new
+game.play
